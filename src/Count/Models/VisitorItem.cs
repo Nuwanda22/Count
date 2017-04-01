@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Count.Models
 {
-    public class TodoItem
+    public class VisitorItem
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Key { get; set; }
-        public string Name { get; set; }
-        public bool IsComplete { get; set; }
+        public string Referer { get; set; }
+        public string IPAddress { get; set; }
     }
 }

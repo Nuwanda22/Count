@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Count.Models
 {
-    public class TodoContext : DbContext
+    public class VisitorContext : DbContext
     {
-        public TodoContext(DbContextOptions<TodoContext> options)
+        public VisitorContext(DbContextOptions<VisitorContext> options)
             : base(options)
         {
         }
 
-        public DbSet<TodoItem> TodoItems { get; set; }
+        public DbSet<VisitorItem> Visitors { get; set; }
     }
 }

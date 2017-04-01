@@ -30,11 +30,11 @@ namespace Count
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddDbContext<TodoContext>(opt => opt.UseInMemoryDatabase());
+            services.AddDbContext<VisitorContext>(opt => opt.UseInMemoryDatabase());
 
             services.AddMvc();
 
-            services.AddScoped<ITodoRepository, TodoRepository>();
+            services.AddScoped<IVisitorRepository, VisitorRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
