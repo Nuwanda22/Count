@@ -1,4 +1,5 @@
 ﻿using Count.Models;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -29,7 +30,16 @@ namespace Count.Controllers
         [HttpGet("last")]
         public IActionResult GetLast()
         {
-            return new ObjectResult(_visitorRepository.GetAll().Last());
+            var list = _visitorRepository.GetAll();
+
+            if(list.Count() == 0)
+            {
+                return new NoContentResult();
+            }
+            else
+            {
+                return new ObjectResult(list.Last());
+            }
         }
 
         [HttpGet("{id}", Name = "GetVisitor")]

@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+
 using Count.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace Count
 {
@@ -30,9 +32,11 @@ namespace Count
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddDbContext<VisitorContext>(opt => opt.UseInMemoryDatabase());
-
+            services.AddDbContext<VisitorContext>(opt => opt.UseSqlite("Data Source=visitor.db"));
+            
             services.AddMvc();
+
+            services.AddCors();
 
             services.AddScoped<IVisitorRepository, VisitorRepository>();
         }
@@ -43,6 +47,14 @@ namespace Count
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+            app.UseCors(builder =>
+            {
+                builder.WithOrigins("http://countvisitor.azurewebsites.net", "https://countvisitor.azurewebsites.net", "https://nuwanda22.github.io")
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            });
             app.UseMvc();
         }
     }
