@@ -14,5 +14,11 @@ namespace Count.Models
         public long Key { get; set; }
         public string Referer { get; set; }
         public string IPAddress { get; set; }
+        public DateTime TimeStamp { get; set; }
+
+        public VisitorItem()
+        {
+            TimeStamp = DateTime.Now;
+        }
     }
 }

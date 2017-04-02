@@ -12,7 +12,7 @@ namespace Count.Models
         public VisitorRepository(VisitorContext context)
         {
             _context = context;
-
+            
             //if (_context.Visitors.Count() == 0)
             //    Add(new VisitorItem { Referer = "Item1" });
         }

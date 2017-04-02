@@ -32,8 +32,9 @@ namespace Count
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddDbContext<VisitorContext>(opt => opt.UseSqlite("Data Source=visitor.db"));
-            
+            //services.AddDbContext<VisitorContext>(opt => opt.UseSqlite("Data Source=visitor.db"));
+            services.AddDbContext<VisitorContext>(opt => opt.UseInMemoryDatabase());
+
             services.AddMvc();
 
             services.AddCors();

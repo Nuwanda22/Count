@@ -8,11 +8,16 @@ namespace Count.Models
 {
     public class VisitorContext : DbContext
     {
+        public DbSet<VisitorItem> Visitors { get; set; }
+
         public VisitorContext(DbContextOptions<VisitorContext> options)
             : base(options)
         {
         }
 
-        public DbSet<VisitorItem> Visitors { get; set; }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlite("Data Source=visitor.db");
+        //}
     }
 }
